@@ -1,0 +1,43 @@
+import random
+
+# Step 1: Setup the game
+word_list = ["aardvark", "baboon", "camel", "crocodile"]
+chosen_word = random.choice(word_list)
+
+# Setup scoreboard
+lives = len(chosen_word)
+current_score = ["_" for _ in chosen_word]  # Create a list of underscores representing the word
+print(f"This word has {lives} letters in it.")
+print(" ".join(current_score))  # Print the score as a string with spaces between underscores
+
+guessed_right = []
+guessed_wrong = []
+
+# Game loop
+while lives > 0 and "_" in current_score:
+    guess = input("Guess a letter: ").lower()
+
+    if guess in guessed_right or guess in guessed_wrong:
+        print("You already guessed that letter. Try again.")
+        continue
+
+    if guess in chosen_word:
+        print("Right")
+        guessed_right.append(guess)
+
+        # Update the current score by replacing the underscores with the guessed letter
+        for index, letter in enumerate(chosen_word):
+            if letter == guess:
+                current_score[index] = guess
+    else:
+        print("Wrong")
+        lives -= 1
+        guessed_wrong.append(guess)
+        print(f"{lives} lives left!")
+
+    print(" ".join(current_score))
+
+if "_" not in current_score:
+    print("Congratulations! You've guessed the word!")
+else:
+    print(f"Game over! The word was '{chosen_word}'.")
