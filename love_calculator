@@ -1,0 +1,29 @@
+print("The Love Calculator is calculating your score...")
+name1 = input() # What is your name?
+name2 = input() # What is their name?
+# 🚨 Don't change the code above 👆
+# Write your code below this line 👇
+fullname = name1.upper() + name2.upper()
+def truth_checker(fullname):
+  T_list = ["T","R", "U","E"]
+  L_list = ["L", "O", "V", "E"]
+  truth = 0
+  stupid_ending = ""
+  for letter in fullname:
+    if letter in T_list:
+      truth +=1
+  love = 0
+  for letter in fullname:
+    if letter in L_list:
+      love +=1
+  love_score = str(truth)+str(love)
+  new_love_score = int(love_score)
+  if new_love_score < 10 or new_love_score > 90:
+    stupid_ending = ", you go together like coke and mentos."
+  elif 40 < new_love_score < 50:
+    stupid_ending = ", you are alright together."
+  else:
+    stupid_ending = "."
+
+  print(f"Your score is {new_love_score}{stupid_ending}")
+truth_checker(fullname)
